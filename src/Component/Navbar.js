@@ -12,6 +12,9 @@ export const Navbar = () => {
           <a href="#skills" className="mr-5 hover:text-white">
             Skills
           </a>
+          <a href="#experince" className="mr-5 hover:text-white">
+            Experince
+          </a>
         </nav>
         <a
           href="#contact"
