@@ -1,7 +1,7 @@
 
 export const Contact=()=> {
   return (
-    <section id="contact" className="relative">
+    <section id="contact" className="relative bg-gray-700">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
         <div className="lg:w-2/3 md:w-1/2 bg-gray-900 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
           <iframe
@@ -33,7 +33,7 @@ export const Contact=()=> {
               <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
                 PHONE
               </h2>
-              <p className="leading-relaxed">asdfasdfa</p>
+              <p className="leading-relaxed">7876149519</p>
             </div>
           </div>
         </div>
