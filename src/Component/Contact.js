@@ -1,7 +1,24 @@
-
+import { useState,useRef } from "react";
+import emailjs, { send } from "@emailjs/browser";
 export const Contact=()=> {
+  const form=useRef();
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [message,setMessage]=useState("");
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_5mz68hl', 'template_46jrpcs', form.current, 'YDeOjtM3mBy4O6irc')
+      .then((result) => {
+          console.log(result.text);
+          alert("Email sent successfully");
+          setName("");setMessage("");setEmail("");
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
   return (
-    <section id="contact" className="relative bg-gray-700">
+    <section id="contact" className="relative bg-gray-600">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
         <div className="lg:w-2/3 md:w-1/2 bg-gray-900 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
           <iframe
@@ -38,8 +55,9 @@ export const Contact=()=> {
           </div>
         </div>
         <form
-          netlify
+          ref={form}
           name="contact"
+          onSubmit={(e)=>{sendEmail(e);}}
           className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           <h2 className="text-white sm:text-4xl text-3xl mb-1 font-medium title-font">
             Hire Me
@@ -56,6 +74,8 @@ export const Contact=()=> {
               type="text"
               id="name"
               name="name"
+              onChange={(e)=>{setName(e.target.value);}}
+              value={name}
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -67,7 +87,9 @@ export const Contact=()=> {
               type="email"
               id="email"
               name="email"
+              onChange={(e)=>{setEmail(e.target.value);}}
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              value={email}
             />
           </div>
           <div className="relative mb-4">
@@ -79,7 +101,9 @@ export const Contact=()=> {
             <textarea
               id="message"
               name="message"
+              onChange={(e)=>{setMessage(e.target.value);}}
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+              value={message}
             />
           </div>
           <button
